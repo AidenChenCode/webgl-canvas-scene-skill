@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Scene — WebGL2 + Canvas2D</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  #stage { position: absolute; left: 50%; top: 50%; transform-origin: 0 0; background: #000; }
+  #stage canvas { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+  #play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+          font: 600 22px/1 "Avenir Next", "Helvetica Neue", Arial, sans-serif; letter-spacing: 6px;
+          color: #fff; background: #333; border: 0; border-radius: 6px; padding: 22px 44px; cursor: pointer; }
+  #play:hover { filter: brightness(1.2); }
+  body.export #play { display: none; }
+  body.export #stage { left: 0; top: 0; transform: none !important; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="gl"></canvas>
+  <canvas id="ui"></canvas>
+  <button id="play">▶ PLAY</button>
+</div>
+<!-- 加载顺序固定：配置 → 画面引擎 → [音乐引擎] → 分镜 → [配乐]。全是经典脚本，file:// 直接打开。
+     要加音乐：把 webaudio-score skill 的 engine-audio.js 和一个 score.js 放进本目录，取消下面两行注释。 -->
+<script src="spec.js"></script>
+<script src="engine-visual.js"></script>
+<!-- <script src="engine-audio.js"></script> -->
+<script src="scenes.js"></script>
+<!-- <script src="score.js"></script> -->
+<script>document.getElementById('play').style.background = (SPEC.colors && SPEC.colors.primary) || '#333';</script>
+</body>
+</html>
